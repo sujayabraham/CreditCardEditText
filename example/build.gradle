@@ -1,19 +1,29 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '27.0.3'
+    namespace 'com.cardunion'
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion14
-        targetSdkVersion 28
+        applicationId "com.cardunion"
+        minSdk 14
+        targetSdk 34
         versionCode 1
         versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
+        }
     }
 }
 
 dependencies {
-    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
-    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation project(':library')
 }

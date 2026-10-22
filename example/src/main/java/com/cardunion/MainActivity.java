@@ -1,13 +1,13 @@
-package com.alihafizji;
+package com.cardunion;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.alihafizji.library.CreditCardEditText;
+import com.cardunion.library.CreditCardEditText;
 
 public class MainActivity extends AppCompatActivity {
 

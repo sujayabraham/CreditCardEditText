@@ -1,4 +1,4 @@
-package com.alihafizji.library;
+package com.cardunion.library;
 
 /**
  * Created by kauserali on 05/05/14.
@@ -6,7 +6,18 @@ package com.alihafizji.library;
 public enum CreditCardTypeEnum {
     VISA("Visa"),
     MASTER_CARD("MasterCard"),
-    AMERICAN_EXPRESS("American Express");
+    AMERICAN_EXPRESS("American Express"),
+    DISCOVER("Discover"),
+    JCB("JCB"),
+    DINERS_CLUB("Diners Club"),
+    UNION_PAY("UnionPay"),
+    MAESTRO("Maestro"),
+    MIR("Mir"),
+    RUPAY("RuPay"),
+    HIPERCARD("Hipercard"),
+    TROY("Troy"),
+    VERVE("Verve"),
+    HIMYAN("Himyan");
 
     public final String cartType;
 

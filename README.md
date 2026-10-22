@@ -36,7 +36,7 @@ repositories {
 
 ```
 dependencies {
-    compile 'com.alihafizji.creditcardedittext:library:+@aar'
+    compile 'com.cardunion.creditcardedittext:library:+@aar'
 }
 ```
 **Note: The dependacy section can have other dependencies**

@@ -1,4 +1,4 @@
-package com.alihafizji.library;
+package com.cardunion.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -183,7 +183,7 @@ public class CreditCardEditText extends EditText implements CreditCardTextWatche
     private void addSeparatorToText() {
         String text = getText().toString();
         text = text.replace(mSeparator, "");
-        if (text.length() >= 16) {
+        if (text.length() > mMaximumCreditCardLength) {
             return;
         }
         int interval = 4;

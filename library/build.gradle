@@ -1,101 +1,25 @@
-apply plugin: 'com.android.library'
-apply plugin: 'maven'
-apply plugin: 'signing'
-
-version = "3.0"
-
-ext.isReleaseVersion = project.hasProperty("release")
-
-if (isReleaseVersion) {
-    ext.sonatypeRepo = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-} else {
-    version += "-SNAPSHOT"
-    ext.sonatypeRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
+plugins {
+    id 'com.android.library'
 }
 
-group = "com.alihafizji.creditcardedittext"
-
-ext.sonatypeUsername = ext.has("sonatypeUsername") ? sonatypeUsername : ""
-ext.sonatypePassword = ext.has("sonatypePassword") ? sonatypePassword : ""
-
 android {
-    compileSdkVersion 28
-    buildToolsVersion '27.0.3'
+    namespace 'com.cardunion.library'
+    compileSdk 34
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdk 14
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
         }
     }
-
 }
 
-configurations {
-    archives {
-        extendsFrom configurations.default
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-signing {
-    required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
-    sign configurations.archives
-}
-
-task publishLocal(type: Upload) {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        repository(url: "file://$buildDir/repo")
-    }
-}
-
-uploadArchives {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-        repository(url: project.ext.sonatypeRepo) {
-            authentication(userName: project.ext.sonatypeUsername,
-                    password: project.ext.sonatypePassword)
-        }
-
-        pom.project {
-            name 'CreditCardEditText library'
-            packaging 'aar'
-            description 'Android EditText extension that matches a credit card number to its type.'
-            url 'https://github.com/aliHafizji/CreditCardEditText.git'
-
-            scm {
-                url 'scm:git@github.com:aliHafizji/CreditCardEditText.git'
-                connection 'scm:git@github.com:aliHafizji/CreditCardEditText.git'
-                developerConnection 'scm:git@github.com:aliHafizji/CreditCardEditText.git'
-            }
-
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-
-            developers {
-                developer {
-                    id 'ali.hafizji'
-                    name 'Ali Hafizji'
-                    email 'ali.hafizji@gmail.com'
-                }
-            }
-        }
-    }
+dependencies {
 }
